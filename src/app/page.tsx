@@ -1,9 +1,11 @@
 "use client";
-import { Button } from "@material-tailwind/react";
-export default function Home() {
+import { Header } from "@/components/Header";
+import Home from "./(Home)/home/page";
+export default function MainRoot() {
   return (
     <>
-      <Button placeholder={undefined}>Button</Button>
+      <Header />
+      <Home />
     </>
   );
 }
