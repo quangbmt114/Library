@@ -14,14 +14,10 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { AuthService } from "@/services/auth";
 import Link from "next/link";
-type LoginForm = {
+type registerForm = {
+  name: string;
   email: string;
   password: string;
-};
-type responseData = {
-  status: string;
-  message: string;
-  access_token: string;
 };
 export default function LoginCard() {
   const router = useRouter();
@@ -30,7 +26,7 @@ export default function LoginCard() {
     setValue,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginForm>();
+  } = useForm<registerForm>();
   const onSubmit = handleSubmit(async (data) => {
     try {
       const response = await AuthService.login(data);
@@ -51,10 +47,21 @@ export default function LoginCard() {
           className="mb-4 grid h-28 place-items-center"
         >
           <Typography variant="h3" color="white" placeholder={undefined}>
-            SIGN IN
+            SIGN UP
           </Typography>
         </CardHeader>
         <CardBody className="flex flex-col gap-4" placeholder={undefined}>
+          <Input
+            type="text"
+            {...register("name", { required: true })}
+            label="Name"
+            size="lg"
+            placeholder={undefined}
+            crossOrigin={2}
+          />
+          {errors.name && (
+            <p className="text-xs text-red-600">Field is required</p>
+          )}
           <Input
             {...register("email", {
               required: "Email is required",
@@ -68,7 +75,9 @@ export default function LoginCard() {
             placeholder={undefined}
             crossOrigin={1}
           />
-          {<p className="text-xs text-red-600">{errors.email?.message}</p>}
+          {errors.email && (
+            <p className="text-xs text-red-600">{errors.email?.message}</p>
+          )}
           <Input
             type="password"
             {...register("password", { required: true })}
@@ -88,14 +97,14 @@ export default function LoginCard() {
             fullWidth
             placeholder={undefined}
           >
-            Sign In
+            Sign Up
           </Button>
           <Typography
             variant="small"
             className="mt-6 flex justify-center"
             placeholder={undefined}
           >
-            Don&apos;t have an account?
+            You have an account?
             <Typography
               placeholder={undefined}
               as="b"
@@ -103,7 +112,7 @@ export default function LoginCard() {
               color="blue-gray"
               className="ml-1 font-bold"
             >
-              <Link href={"/register"}>Sign up</Link>
+              <Link href={"/login"}>Sign in</Link>
             </Typography>
           </Typography>
         </CardFooter>

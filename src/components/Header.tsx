@@ -7,24 +7,32 @@ import {
 } from "@material-tailwind/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { useAppSelector } from "@/lib/hooks";
+import { authState } from "@/store/AuthSlice";
+import { ProfileMenu } from "./MenuAccount/page";
 
 function NavList() {
+  const stateAuth = useAppSelector(authState);
   return (
     <ul className="my-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        placeholder={undefined}
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-medium"
-      >
-        <Link
-          href="/login"
-          className="flex items-center hover:text-blue-500 transition-colors"
+      {stateAuth ? (
+        <ProfileMenu />
+      ) : (
+        <Typography
+          placeholder={undefined}
+          as="li"
+          variant="small"
+          color="blue-gray"
+          className="p-1 font-medium"
         >
-          Login
-        </Link>
-      </Typography>
+          <Link
+            href="/login"
+            className="flex items-center hover:text-blue-500 transition-colors"
+          >
+            Login
+          </Link>
+        </Typography>
+      )}
     </ul>
   );
 }

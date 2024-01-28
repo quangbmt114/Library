@@ -1,4 +1,5 @@
 export interface Product {
+  onState: boolean;
   _id: string;
   title: string;
   image: string[];

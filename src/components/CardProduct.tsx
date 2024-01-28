@@ -8,7 +8,7 @@ import {
 
 export function CardProduct(props: Product) {
   return (
-    <Card className="w-96" placeholder={undefined}>
+    <Card className="w-96" placeholder={undefined} shadow={false}>
       <CardHeader
         shadow={false}
         floated={false}
@@ -30,13 +30,23 @@ export function CardProduct(props: Product) {
           >
             {props.title}
           </Typography>
-          <Typography
-            color="blue-gray"
-            className="font-medium"
-            placeholder={undefined}
-          >
-            ${props.price}
-          </Typography>
+          {props.onState ? (
+            <Typography
+              color="blue-gray"
+              className="font-medium"
+              placeholder={undefined}
+            >
+              ${props.price}
+            </Typography>
+          ) : (
+            <Typography
+              color="blue-gray"
+              className="font-medium"
+              placeholder={undefined}
+            >
+              Liên hệ
+            </Typography>
+          )}
         </div>
         <Typography
           placeholder={undefined}
