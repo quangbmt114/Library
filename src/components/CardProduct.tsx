@@ -16,7 +16,7 @@ export function CardProduct(props: Product) {
         placeholder={undefined}
       >
         <img
-          src={props.image[0]}
+          src={props.image}
           alt="card-image"
           className="h-full w-full object-cover"
         />

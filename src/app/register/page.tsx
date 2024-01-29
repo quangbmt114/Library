@@ -23,15 +23,15 @@ export default function LoginCard() {
   const router = useRouter();
   const {
     register,
-    setValue,
     handleSubmit,
     formState: { errors },
   } = useForm<registerForm>();
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (value) => {
     try {
-      const response = await AuthService.login(data);
-      localStorage.setItem("accessToken", response.access_token);
-      router.push("/");
+      const data = await AuthService.signUp(value);
+      // console.log("data", data);
+      toast.success(data?.message);
+      router.push("/login");
     } catch (error: any | null) {
       console.log(error);
       toast.error(error.response.data.message);

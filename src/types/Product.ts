@@ -1,8 +1,8 @@
 export interface Product {
-  onState: boolean;
+  onState: boolean | null;
   _id: string;
   title: string;
-  image: string[];
+  image: string;
   price: string;
   description: string;
   createAt: Date;

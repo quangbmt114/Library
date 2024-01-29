@@ -1,5 +1,5 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { useAppDispatch } from "@/lib/hooks";
 import { changeState } from "@/store/AuthSlice";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -15,6 +15,7 @@ function LayoutRoot({ children }: { children: React.ReactNode }) {
       typeof window !== "undefined"
         ? localStorage.getItem("accessToken")
         : null;
+
     if (access_token) {
       dispatch(changeState(true));
     } else {

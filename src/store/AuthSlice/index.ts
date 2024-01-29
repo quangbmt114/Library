@@ -1,10 +1,10 @@
 import { RootState } from "@/lib/store";
 import { createSlice } from "@reduxjs/toolkit";
 interface state {
-  state: boolean;
+  state: boolean | null;
 }
 const initialState: state = {
-  state: false,
+  state: null,
 };
 const AuthState = createSlice({
   name: "authState",
